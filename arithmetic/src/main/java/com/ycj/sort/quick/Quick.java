@@ -1,28 +1,21 @@
-package com.ycj.sort.quick; /******************************************************************************
- *  Compilation:  javac Quick.java
- *  Execution:    java Quick < input.txt
- *  Dependencies: StdOut.java StdIn.java
- *  Data files:   https://algs4.cs.princeton.edu/23quicksort/tiny.txt
- *                https://algs4.cs.princeton.edu/23quicksort/words3.txt
+package com.ycj.sort.quick;
+/******************************************************************************
+ * 1：分区 通过交换数据将数组分成 大于 a[0] 和小于a[0] 两部分，并返回此时a[0] 的 index
  *
- *  Sorts a sequence of strings from standard input using quicksort.
+ * 2.根据 1 步的 index 分成两次递归调用  0-index  index+1-end
  *
- *  % more tiny.txt
- *  S O R T E X A M P L E
+ * 3.d递归 结束条件 hign index <= low index
  *
- *  % java Quick < tiny.txt
- *  A E E L M O P R S T X                 [ one string per line ]
- *
- *  % more words3.txt
- *  bed bug dad yes zoo ... all bad yet
- *
- *  % java Quick < words3.txt
- *  all bad bed bug dad ... yes yet zoo    [ one string per line ]
- *
- *
- *  Remark: For a type-safe version that uses static generics, see
- *
- *    https://algs4.cs.princeton.edu/23quicksort/QuickPedantic.java
+ * 例子
+ * source: [64, 81, 6, 61, 95, 47]
+ * [61, 47, 6, 64, 95, 81]
+ * [6, 47, 61, 64, 95, 81]
+ * [6, 47, 61, 64, 95, 81]
+ * [6, 47, 61, 64, 95, 81]
+ * [6, 47, 61, 64, 95, 81]
+ * [6, 47, 61, 64, 95, 81]
+ * [6, 47, 61, 64, 81, 95]
+ * [6, 47, 61, 64, 81, 95]
  *
  ******************************************************************************/
 
@@ -32,17 +25,8 @@ import com.ycj.util.ArrayDataUtil;
 
 import java.util.Arrays;
 
-/**
- * The {@code Quick} class provides static methods for sorting an
- * array and selecting the ith smallest element in an array using quicksort.
- * <p>
- * For additional documentation,
- * see <a href="https://algs4.cs.princeton.edu/23quick">Section 2.3</a> of
- * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- *
- * @author Robert Sedgewick
- * @author Kevin Wayne
- */
+
+
 public class Quick implements Sort {
 
     // This class should not be instantiated.
@@ -63,8 +47,11 @@ public class Quick implements Sort {
 
     // quicksort the subarray from a[lo] to a[hi]
     private void sort(Comparable[] a, int lo, int hi) {
+        //if(isSorted(a, lo, hi)) return;
+
         if (hi <= lo) return;
         int j = partition(a, lo, hi);
+        System.out.println(Arrays.toString(a));
         sort(a, lo, j - 1);
         sort(a, j + 1, hi);
         assert isSorted(a, lo, hi);
@@ -133,12 +120,11 @@ public class Quick implements Sort {
 
     public static void main(String[] args) {
 
-        Integer[] source = ArrayDataUtil.getUniqueRandomIntArray(10, 100);
+        Integer[] source = ArrayDataUtil.getUniqueRandomIntArray(5, 100);
         System.out.println(Arrays.toString(source));
         Stopwatch stopwatch = Stopwatch.createStarted();
         Quick quick = new Quick();
         quick.sort(source);
-        System.out.println(Arrays.toString(source));
         System.out.println(stopwatch.elapsed()
                                     .toMillis());
 

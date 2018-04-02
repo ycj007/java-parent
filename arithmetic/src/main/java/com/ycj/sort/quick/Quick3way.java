@@ -1,23 +1,19 @@
-package com.ycj.sort.quick; /******************************************************************************
- *  Compilation:  javac Quick3way.java
- *  Execution:    java Quick3way < input.txt
- *  Dependencies: StdOut.java StdIn.java
- *  Data files:   https://algs4.cs.princeton.edu/23quicksort/tiny.txt
- *                https://algs4.cs.princeton.edu/23quicksort/words3.txt
+package com.ycj.sort.quick;
+/******************************************************************************
+ * 1： 从两边同时跟 a[0] 比较 ，小于a[0] 的与lt交换数据，并增加 lt 大于 a[0] 的与 gt--交换,否则 i++
+ * 2: 终止条件 为 i<= gt
+ * 3. 递归请求。
  *
- *  Sorts a sequence of strings from standard input using 3-way quicksort.
+ * 下面是一个例子
+ *  source :[65, 34, 22, 9, 91, 28]
+ * [65, 34, 22, 9, 91, 28]
+ * [34, 22, 9, 28, 65, 91]
+ * [22, 9, 28, 34, 65, 91]
+ * [9, 22, 28, 34, 65, 91]
+ * [9, 22, 28, 34, 65, 91]
+ * [9, 22, 28, 34, 65, 91]
+ * [9, 22, 28, 34, 65, 91]
  *
- *  % more tiny.txt
- *  S O R T E X A M P L E
- *
- *  % java Quick3way < tiny.txt
- *  A E E L M O P R S T X                 [ one string per line ]
- *
- *  % more words3.txt
- *  bed bug dad yes zoo ... all bad yet
- *
- *  % java Quick3way < words3.txt
- *  all bad bed bug dad ... yes yet zoo    [ one string per line ]
  *
  ******************************************************************************/
 
@@ -27,17 +23,7 @@ import com.ycj.util.ArrayDataUtil;
 
 import java.util.Arrays;
 
-/**
- * The {@code Quick3way} class provides static methods for sorting an
- * array using quicksort with 3-way partitioning.
- * <p>
- * For additional documentation,
- * see <a href="https://algs4.cs.princeton.edu/23quick">Section 2.3</a> of
- * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- *
- * @author Robert Sedgewick
- * @author Kevin Wayne
- */
+
 public class Quick3way implements Sort {
 
     // This class should not be instantiated.
@@ -57,6 +43,9 @@ public class Quick3way implements Sort {
 
     // quicksort the subarray a[lo .. hi] using 3-way partitioning
     private void sort(Comparable[] a, int lo, int hi) {
+        if(isSorted(a, lo, hi))
+            return;
+        System.out.println(Arrays.toString(a));
         if (hi <= lo) return;
         int lt = lo, gt = hi;
         Comparable v = a[lo];
@@ -80,12 +69,12 @@ public class Quick3way implements Sort {
 
 
     public static void main(String[] args) {
-        Integer[] source = ArrayDataUtil.getUniqueRandomIntArray(10, 100);
+        Integer[] source = ArrayDataUtil.getUniqueRandomIntArray(5, 100);
         System.out.println(Arrays.toString(source));
         Stopwatch stopwatch = Stopwatch.createStarted();
         Quick3way quick3way = new Quick3way();
         quick3way.sort(source);
-        System.out.println(Arrays.toString(source));
+       // System.out.println(Arrays.toString(source));
         System.out.println(stopwatch.elapsed()
                                     .toMillis());
     }
