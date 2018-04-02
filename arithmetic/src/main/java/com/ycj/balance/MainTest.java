@@ -1,7 +1,7 @@
 package com.ycj.balance;
 
 import com.google.common.collect.Lists;
-import com.ycj.util.TimeStatics;
+import com.ycj.util.Stopwatch;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class MainTest {
 
         RandomLoadBalance randomLoadBalance = new RandomLoadBalance();
 
-        TimeStatics timeStatics = new TimeStatics();
+        Stopwatch timeStatics = new Stopwatch();
         for (int i = 0; i < 10000; i++) {
             Statics.addStatics(randomLoadBalance.select(list));
         }

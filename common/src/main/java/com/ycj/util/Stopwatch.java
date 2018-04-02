@@ -1,9 +1,9 @@
 package com.ycj.util;
 
-public class TimeStatics {
+public class Stopwatch {
 
     private long startTime = System.currentTimeMillis();
-    public TimeStatics(){
+    public Stopwatch(){
 
     }
 

@@ -1,4 +1,4 @@
-package com.ycj.sort;
+package com.ycj.sort.other;
 
 /**
  * 
