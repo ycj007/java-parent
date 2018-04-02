@@ -57,7 +57,14 @@ public class Insertion implements Sort<Integer> {
 
 
     }
-
+    public   void sort(Integer[] a, int lo, int hi) {
+        for (int i = lo; i < hi; i++) {
+            for (int j = i; j > lo && less(a[j], a[j-1]); j--) {
+                exch(a, j, j-1);
+            }
+        }
+        assert isSorted(a, lo, hi);
+    }
     public static void main(String[] args) {
         Integer[] source = ArrayDataUtil.getUniqueRandomIntArray(10, 10000);
         System.out.println(Arrays.toString(source));

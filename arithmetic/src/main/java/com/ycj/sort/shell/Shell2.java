@@ -7,23 +7,18 @@ import com.ycj.util.ArrayDataUtil;
 import java.util.Arrays;
 
 
-/**
- * 希尔排序
- * 插入排序的优化
- * 将间隔 变为h 然后h 逐渐变小到1
- * 利用了插入算法对局部数据有序时效率较高的特性
- *
- */
-public class Shell implements Sort<Integer> {
+public class Shell2 implements Sort<Integer> {
 
     @Override
     public void sort(Integer[] a) {
+
+        int shard = 2;
         int n = a.length;
 
-        // 3x+1 increment sequence:  1, 4, 13, 40, 121, 364, 1093, ...
+        // 2x+1 increment sequence:  1, 3, 7, 15, 31, 63,  ...
         int h = 1;
-        while (h < n/3)
-            h = 3*h + 1;
+        while (h < n/shard)
+            h = shard*h + 1;
 
         while (h >= 1) {
             // h-sort the array
@@ -33,7 +28,7 @@ public class Shell implements Sort<Integer> {
                 }
             }
             assert isHsorted(a, h);
-            h /= 3;
+            h /= shard;
         }
         assert isSorted(a);
     }
@@ -47,7 +42,7 @@ public class Shell implements Sort<Integer> {
     public static void main(String[] args) {
         Integer[] source = ArrayDataUtil.getUniqueRandomIntArray(100000, 1000000);
         System.out.println(Arrays.toString(source));
-        Shell selection = new Shell();
+        Shell2 selection = new Shell2();
         Stopwatch stopwatch = Stopwatch.createStarted();
         selection.sort(source);
         System.out.println(Arrays.toString(source));
