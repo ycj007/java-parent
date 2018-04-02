@@ -9,16 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>arithmetic</artifactId>
+    <artifactId>common</artifactId>
 
-
-    <dependencies>
-        <dependency>
-            <groupId>com.ycj</groupId>
-            <artifactId>common</artifactId>
-            <scope>compile</scope>
-        </dependency>
-
-    </dependencies>
 
 </project>
