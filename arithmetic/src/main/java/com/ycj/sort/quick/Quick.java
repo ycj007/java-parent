@@ -51,7 +51,7 @@ public class Quick implements Sort {
 
         if (hi <= lo) return;
         int j = partition(a, lo, hi);
-        System.out.println(Arrays.toString(a));
+       // System.out.println(Arrays.toString(a));
         sort(a, lo, j - 1);
         sort(a, j + 1, hi);
         assert isSorted(a, lo, hi);
@@ -120,7 +120,7 @@ public class Quick implements Sort {
 
     public static void main(String[] args) {
 
-        Integer[] source = ArrayDataUtil.getUniqueRandomIntArray(5, 100);
+        Integer[] source = ArrayDataUtil.getUniqueRandomIntArray(100000, 1000000);
         System.out.println(Arrays.toString(source));
         Stopwatch stopwatch = Stopwatch.createStarted();
         Quick quick = new Quick();
