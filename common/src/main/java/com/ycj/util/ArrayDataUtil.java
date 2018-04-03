@@ -16,6 +16,7 @@ public class ArrayDataUtil {
         Random random = new Random();
         while (data.size() <= size) {
             data.add(random.nextInt(range));
+
         }
 
         return data.toArray(finalData);
@@ -70,7 +71,7 @@ public class ArrayDataUtil {
                 } else {
                     data[i] = a[aIndex];
                     data[++i] = b[bIndex];
-                   // ++i;
+                    // ++i;
                     ++aIndex;
                     ++bIndex;
                 }
@@ -104,9 +105,9 @@ public class ArrayDataUtil {
 
     public static void main(String[] args) {
 //        Integer[] a = new Integer[]{1, 3, 5, 7, 9, 12, 14, 16, 17, 19, 20};
-        Integer[] a =getUniqueRandomIntArray2(100000,1000000);
+        Integer[] a = getUniqueRandomIntArray2(100000, 1000000);
 //        Integer[] b = new Integer[]{4, 6, 8, 11, 13, 15, 18, 22, 24, 26, 29};
-        Integer[] b =getUniqueRandomIntArray2(100000,1000000);
+        Integer[] b = getUniqueRandomIntArray2(100000, 1000000);
         Arrays.sort(a);
         Arrays.sort(b);
         System.out.println(Arrays.toString(a));

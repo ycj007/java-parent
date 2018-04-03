@@ -1,4 +1,4 @@
-package com.ycj.sort.other;
+package com.ycj.search;
 
 public class BinarySearch {
 
