@@ -50,6 +50,11 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="ignoredPathMasks">
+      <list>
+        <option value="*.class" />
+      </list>
+    </option>
   </component>
   <component name="Palette2">
     <group name="Swing">
